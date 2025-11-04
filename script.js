@@ -170,7 +170,6 @@ function initGoogleAuth() {
         }
         return;
     }
-
     // Проверяем что Google API загружен
     if (typeof google === 'undefined' || !google.accounts) {
         console.warn('Google API не загружен. Проверьте интернет-соединение.');
