@@ -1,0 +1,19 @@
+{
+  "name": "flap",
+  "version": "0.1.0",
+  "description": "FLAP - Платформа для осознанного локального потребления",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 server.py",
+    "dev": "python3 server.py"
+  },
+  "keywords": [
+    "eco",
+    "local",
+    "sustainability",
+    "green",
+    "conscious-consumption"
+  ],
+  "author": "",
+  "license": "MIT"
+}

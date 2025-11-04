@@ -1,0 +1,48 @@
+# API ключи и конфигурация
+config.js
+
+# SSL сертификаты
+*.pem
+cert.pem
+key.pem
+
+# Markdown файлы (кроме README)
+*.md
+
+# Системные файлы
+.DS_Store
+Thumbs.db
+
+# Логи
+*.log
+npm-debug.log*
+
+# Временные файлы
+*.tmp
+*.temp
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Node modules (если будут использоваться)
+node_modules/
+package-lock.json
+
+# Build файлы
+dist/
+build/
+
+# Capacitor (если будете собирать мобильное приложение)
+android/
+ios/
+.capacitor/
+
+# Окружение
+.env
+.env.local
+.env.development
+.env.production

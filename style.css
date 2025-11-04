@@ -1,0 +1,1446 @@
+/* Сброс стилей */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #10b981;
+    --primary-dark: #059669;
+    --secondary-color: #3b82f6;
+    --danger-color: #ef4444;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --bg-light: #f9fafb;
+    --bg-white: #ffffff;
+    --border-color: #e5e7eb;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --header-height: 60px;
+    --filter-height: 60px;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: var(--text-primary);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* =========================
+   Экран загрузки
+========================= */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.loading-content {
+    text-align: center;
+    color: white;
+}
+
+.logo {
+    font-size: 80px;
+    margin-bottom: 20px;
+    animation: bounce 2s infinite;
+}
+
+.loading-content h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.loading-content p {
+    font-size: 18px;
+    opacity: 0.9;
+    margin-bottom: 30px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* =========================
+   Экран авторизации
+========================= */
+.auth-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9998;
+    padding: 20px;
+}
+
+.auth-content {
+    background: white;
+    border-radius: 24px;
+    padding: 40px 30px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+}
+
+.logo-large {
+    font-size: 80px;
+    margin-bottom: 20px;
+}
+
+.auth-content h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.tagline {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.features {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    background: var(--bg-light);
+    border-radius: 12px;
+    text-align: left;
+}
+
+.feature-icon {
+    font-size: 24px;
+}
+
+.feature span:last-child {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.google-btn {
+    width: 100%;
+    padding: 14px 20px;
+    background: white;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: all 0.2s;
+    margin-bottom: 20px;
+}
+
+.google-btn:hover {
+    background: var(--bg-light);
+    border-color: var(--primary-color);
+}
+
+.google-btn:active {
+    transform: scale(0.98);
+}
+
+.google-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.privacy-note {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* =========================
+   Главное приложение
+========================= */
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    height: 100dvh; /* Для мобильных браузеров */
+}
+
+/* Хедер */
+.header {
+    height: var(--header-height);
+    background: white;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    flex-shrink: 0;
+    z-index: 100;
+}
+
+.header-content {
+    height: 100%;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-small {
+    font-size: 28px;
+}
+
+.app-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-color);
+    flex: 1;
+    margin-left: 10px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+}
+
+.user-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.eco-score {
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+/* Скрываем имя на очень маленьких экранах */
+@media (max-width: 380px) {
+    .user-name {
+        display: none;
+    }
+}
+
+/* Фильтры */
+.filters {
+    flex-shrink: 0;
+    background: white;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+    z-index: 90;
+}
+
+.filter-toggle {
+    width: 100%;
+    height: var(--filter-height);
+    padding: 0 20px;
+    background: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    position: relative;
+    z-index: 91;
+}
+
+.filter-toggle:active {
+    background: var(--bg-light);
+}
+
+.filter-count {
+    background: var(--primary-color);
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.filter-panel {
+    padding: 0 20px;
+    background: var(--bg-light);
+    border-top: 1px solid var(--border-color);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+}
+
+.filter-panel.active {
+    max-height: 600px;
+    opacity: 1;
+    padding: 20px;
+}
+
+.filter-panel h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+}
+
+.filter-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.filter-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: white;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.filter-option input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+}
+
+.filter-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.filter-icon {
+    font-size: 20px;
+}
+
+/* Карта */
+.map {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+/* Контейнер запроса геолокации */
+.location-request-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 150;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    max-width: 90%;
+    animation: fadeInScale 0.4s ease-out;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Кнопка запроса геолокации */
+.request-location-btn {
+    position: relative;
+    padding: 20px 40px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+    border: none;
+    border-radius: 16px;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    white-space: nowrap;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.request-location-btn::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    border-radius: 18px;
+    opacity: 0.3;
+    z-index: -1;
+    animation: glow 2s ease-in-out infinite;
+}
+
+.location-icon {
+    font-size: 24px;
+    animation: bounce 1.5s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+.request-location-btn:hover {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+    transform: scale(1.05);
+    box-shadow: 0 12px 32px rgba(16, 185, 129, 0.5);
+}
+
+.request-location-btn:active {
+    transform: scale(0.95);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+    }
+    50% {
+        box-shadow: 0 12px 32px rgba(16, 185, 129, 0.6);
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        opacity: 0.3;
+        filter: blur(8px);
+    }
+    50% {
+        opacity: 0.5;
+        filter: blur(12px);
+    }
+}
+
+/* Подсказка */
+.location-hint {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.6s ease-out 0.2s both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Мобильная адаптация */
+@media (max-width: 480px) {
+    .request-location-btn {
+        font-size: 15px;
+        padding: 18px 32px;
+    }
+
+    .location-icon {
+        font-size: 22px;
+    }
+
+    .location-hint {
+        font-size: 13px;
+        padding: 10px 20px;
+        max-width: 85%;
+    }
+}
+
+/* Панель деталей */
+.details-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 24px 24px 0 0;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+    max-height: 70vh;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    z-index: 200;
+    overflow-y: auto;
+}
+
+.details-panel.active {
+    transform: translateY(0);
+}
+
+.details-content {
+    padding: 24px;
+    padding-bottom: 40px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: var(--bg-light);
+    border-radius: 50%;
+    font-size: 24px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.close-btn:active {
+    background: var(--border-color);
+}
+
+.business-header {
+    margin-bottom: 16px;
+}
+
+.business-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    padding-right: 40px;
+}
+
+.business-type {
+    display: inline-block;
+    padding: 6px 12px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.eco-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.eco-badge {
+    padding: 8px 12px;
+    background: var(--bg-light);
+    border-radius: 20px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.business-info {
+    margin-bottom: 24px;
+}
+
+.business-info p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+
+.business-address {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.eco-impact {
+    background: var(--bg-light);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 20px;
+}
+
+.eco-impact h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.impact-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.impact-label {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.impact-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.action-btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.action-btn:hover {
+    background: var(--primary-dark);
+}
+
+.action-btn:active {
+    transform: scale(0.98);
+}
+
+/* FAB кнопка */
+.fab {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    box-shadow: var(--shadow-lg);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 150;
+    transition: all 0.2s;
+}
+
+.fab:hover {
+    background: var(--primary-dark);
+    transform: scale(1.05);
+}
+
+.fab:active {
+    transform: scale(0.95);
+}
+
+.fab-icon {
+    font-size: 24px;
+}
+
+/* Модальное окно */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 300;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.modal.active {
+    opacity: 1;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 24px;
+    padding: 32px 24px;
+    max-width: 500px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.modal-content h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    padding-right: 40px;
+}
+
+/* Статистика */
+.impact-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.stat-card {
+    background: var(--bg-light);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+}
+
+.stat-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 4px;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* Достижения */
+.achievements h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.achievements-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.achievement {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: var(--bg-light);
+    border-radius: 12px;
+}
+
+.achievement.unlocked {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+}
+
+.achievement.locked {
+    opacity: 0.5;
+}
+
+.achievement-icon {
+    font-size: 32px;
+}
+
+.achievement-name {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.achievement-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-left: auto;
+}
+
+.achievement.unlocked .achievement-desc {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* =========================
+   Адаптивность для планшетов
+========================= */
+@media (min-width: 768px) {
+    .auth-content {
+        padding: 50px 40px;
+    }
+
+    .filter-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .details-panel {
+        left: 50%;
+        transform: translate(-50%, 100%);
+        max-width: 600px;
+        border-radius: 24px;
+    }
+
+    .details-panel.active {
+        transform: translate(-50%, 0);
+    }
+
+    .impact-stats {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* =========================
+   Адаптивность для десктопов
+========================= */
+@media (min-width: 1024px) {
+    .filter-options {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .fab {
+        bottom: 40px;
+        right: 40px;
+    }
+}
+
+/* =========================
+   Улучшения для iOS
+========================= */
+@supports (-webkit-touch-callout: none) {
+    body {
+        height: -webkit-fill-available;
+    }
+
+    #app {
+        height: -webkit-fill-available;
+    }
+}
+
+/* Убираем выделение при тапе на мобильных */
+button, a {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
+}
+
+/* Плавная прокрутка */
+.details-panel,
+.modal-content {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Скрываем Google iframe в демо-режиме */
+#credential_picker_container {
+    z-index: 10001 !important;
+}
+
+/* Дополнительная защита от перекрытия кнопок */
+.filter-toggle,
+.header {
+    pointer-events: auto !important;
+}
+
+/* =========================
+   Выбор роли на экране авторизации
+========================= */
+.role-selection {
+    margin-bottom: 24px;
+}
+
+.role-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.role-option {
+    cursor: pointer;
+}
+
+.role-option input[type="radio"] {
+    display: none;
+}
+
+.role-card {
+    padding: 16px 12px;
+    background: var(--bg-light);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.role-option input[type="radio"]:checked + .role-card {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+.role-icon {
+    font-size: 32px;
+}
+
+.role-name {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.role-desc {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+/* =========================
+   Строка поиска
+========================= */
+.search-bar {
+    padding: 12px 20px;
+    background: white;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    background: transparent;
+}
+
+.search-input::placeholder {
+    color: var(--text-secondary);
+}
+
+.clear-search-btn {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: var(--bg-light);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.clear-search-btn:active {
+    background: var(--border-color);
+}
+
+/* =========================
+   Кнопки управления
+========================= */
+.filter-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 20px;
+    background: white;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.filter-controls .filter-toggle {
+    flex: 1;
+    border: none;
+    padding: 12px 0;
+}
+
+.dark-mode-toggle,
+.history-btn {
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: var(--bg-light);
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.dark-mode-toggle:active,
+.history-btn:active {
+    transform: scale(0.95);
+    background: var(--border-color);
+}
+
+/* =========================
+   История посещений
+========================= */
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.history-item {
+    padding: 16px;
+    background: var(--bg-light);
+    border-radius: 12px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.history-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 8px;
+}
+
+.history-item-name {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.history-item-date {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.history-item-stats {
+    display: flex;
+    gap: 16px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.history-item-stat {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.empty-message {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 40px 20px;
+    font-size: 15px;
+}
+
+/* =========================
+   Onboarding туториал
+========================= */
+.onboarding-content {
+    text-align: center;
+    max-width: 450px;
+    position: relative;
+}
+
+.onboarding-content h2 {
+    padding-right: 40px;
+}
+
+.onboarding-content .close-btn {
+    display: flex !important;
+    z-index: 100;
+}
+
+.onboarding-slides {
+    position: relative;
+    min-height: 320px;
+    margin: 24px 0;
+    overflow: hidden;
+}
+
+.onboarding-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    padding: 0 20px;
+}
+
+.onboarding-slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+    position: relative;
+}
+
+.onboarding-slide.prev {
+    transform: translateX(-100%);
+}
+
+.onboarding-icon {
+    font-size: 80px;
+    margin-bottom: 24px;
+    line-height: 1;
+}
+
+.onboarding-slide h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.onboarding-slide p {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0 auto;
+}
+
+.onboarding-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border-color);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.dot.active {
+    background: var(--primary-color);
+    width: 24px;
+    border-radius: 4px;
+}
+
+.onboarding-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+}
+
+.onboarding-btn {
+    flex: 1;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    z-index: 10;
+    position: relative;
+}
+
+.onboarding-btn.primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.onboarding-btn.primary:hover {
+    background: var(--primary-dark);
+}
+
+.onboarding-btn.secondary {
+    background: var(--bg-light);
+    color: var(--text-primary);
+}
+
+.onboarding-btn.secondary:hover {
+    background: var(--border-color);
+}
+
+.onboarding-btn:active {
+    transform: scale(0.98);
+}
+
+/* =========================
+   Интерфейс продавца
+========================= */
+.seller-interface {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    z-index: 400;
+    overflow-y: auto;
+}
+
+.seller-header {
+    padding: 20px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+    position: relative;
+}
+
+.seller-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    padding-right: 40px;
+}
+
+.seller-header .close-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.add-business-form {
+    padding: 24px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.criteria-checkboxes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.criteria-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    background: var(--bg-light);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.criteria-checkbox input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+}
+
+.criteria-checkbox span {
+    font-size: 14px;
+}
+
+.form-note {
+    background: var(--bg-light);
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.form-note p {
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+}
+
+.form-note p:last-child {
+    margin-bottom: 0;
+}
+
+.small-note {
+    font-size: 12px !important;
+    font-style: italic;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.submit-btn:hover {
+    background: var(--primary-dark);
+}
+
+.submit-btn:active {
+    transform: scale(0.98);
+}
+
+/* =========================
+   Dark Mode
+========================= */
+body.dark-mode {
+    --primary-color: #10b981;
+    --primary-dark: #059669;
+    --secondary-color: #60a5fa;
+    --danger-color: #f87171;
+    --text-primary: #f3f4f6;
+    --text-secondary: #9ca3af;
+    --bg-light: #1f2937;
+    --bg-white: #111827;
+    --border-color: #374151;
+}
+
+body.dark-mode {
+    background: var(--bg-white);
+}
+
+body.dark-mode .header,
+body.dark-mode .filters,
+body.dark-mode .search-bar,
+body.dark-mode .filter-controls,
+body.dark-mode .details-panel,
+body.dark-mode .modal-content,
+body.dark-mode .seller-interface {
+    background: var(--bg-white);
+}
+
+body.dark-mode .auth-content {
+    background: var(--bg-light);
+}
+
+body.dark-mode .filter-panel {
+    background: var(--bg-white);
+}
+
+body.dark-mode .filter-option,
+body.dark-mode .form-group input,
+body.dark-mode .form-group select,
+body.dark-mode .form-group textarea {
+    background: var(--bg-light);
+    color: var(--text-primary);
+}
+
+body.dark-mode .dark-mode-toggle {
+    background: var(--primary-color);
+    color: white;
+}
+
+body.dark-mode .location-hint {
+    background: rgba(31, 41, 55, 0.95);
+    color: var(--text-secondary);
+}
