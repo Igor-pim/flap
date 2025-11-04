@@ -1,0 +1,40 @@
+name: Deploy to GitHub Pages
+
+on:
+    push:
+      branches: [ main ]
+    workflow_dispatch:
+
+permissions:
+    contents: read
+    pages: write
+    id-token: write
+
+jobs:
+    deploy:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v4
+
+        - name: Create config.js from secrets
+          run: |
+            cat > config.js << EOF
+            const CONFIG = {
+                GOOGLE_MAPS_API_KEY: '${{ secrets.GOOGLE_MAPS_API_KEY }}',
+                GOOGLE_OAUTH_CLIENT_ID: '${{ secrets.GOOGLE_OAUTH_CLIENT_ID }}',
+                MAP_DEFAULT_CENTER: { lat: 55.753215, lng: 37.618423 },
+                MAP_DEFAULT_ZOOM: 15,
+                DEMO_MODE: false
+            };
+            EOF
+
+        - name: Setup Pages
+          uses: actions/configure-pages@v4
+
+        - name: Upload artifact
+          uses: actions/upload-pages-artifact@v3
+          with:
+            path: '.'
+
+        - name: Deploy to GitHub Pages
+          uses: actions/deploy-pages@v4
