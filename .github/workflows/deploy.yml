@@ -25,9 +25,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Create config.js from secrets
+        env:
+          DEMO_MODE: ${{ secrets.DEMO_MODE || 'true' }}
         run: |
           echo "Creating config.js with secrets..."
-          cat > config.js << 'EOF'
+          cat > config.js << EOF
           // Конфигурация FLAP приложения
           const CONFIG = {
               GOOGLE_MAPS_API_KEY: '${{ secrets.GOOGLE_MAPS_API_KEY }}',
@@ -37,14 +39,14 @@ jobs:
                   lng: 37.618423
               },
               MAP_DEFAULT_ZOOM: 15,
-              DEMO_MODE: false
+              DEMO_MODE: ${DEMO_MODE}
           };
           EOF
 
           echo "✅ config.js создан в $(pwd)"
           ls -la
-          echo "Содержимое config.js (первые 5 строк):"
-          head -5 config.js
+          echo "Содержимое config.js:"
+          cat config.js
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
